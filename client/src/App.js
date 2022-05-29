@@ -1,27 +1,42 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Canvas} from "@react-three/fiber";
+import Robot from "./components/Robot";
+
 
 function App() {
-  const [data, setData] = React.useState(null);
-  React.useEffect(() => {
-    fetch("/api", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
-    </div>
+    <Canvas>
+      <Robot />
+    </Canvas>
   );
 }
 
 export default App;
+
+// Test Socket
+// const [socket, setSocket] = useState(null);
+// useEffect(() => {
+//   const messageListener = (message) => {
+//     console.log(message);
+//   };
+
+//   const socket = io();
+//   socket.on("init", messageListener);
+//   return () => {
+//     socket.off("init", messageListener);
+//     socket.close();
+//   };
+// }, []);
+
+// Test API
+// const [data, setData] = useState(null);
+// useEffect(() => {
+//   fetch("/api", {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Accept: "application/json",
+//     },
+//   })
+//     .then((res) => res.json())
+//     .then((data) => setData(data.message));
+// }, []);
