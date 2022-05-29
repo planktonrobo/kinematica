@@ -6,7 +6,7 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "" }),
   endpoints: (build) => ({
-    getMessages: build.query({
+    getAngles: build.query({
       queryFn: () => ({ data: [] }),
       async onCacheEntryAdded(
         arg,
@@ -25,12 +25,17 @@ export const api = createApi({
             });
           };
           socket.on("init", listener);
+          socket.on("angleState", (event) => {
+            console.log(event.data);
+          });
         } catch {
           // no-op in case `cacheEntryRemoved` resolves before `cacheDataLoaded`,
           // in which case `cacheDataLoaded` will throw
         }
         // cacheEntryRemoved will resolve when the cache subscription is no longer active
         await cacheEntryRemoved;
+        socket.off("init");
+        socket.off("angleState");
         // perform cleanup steps once the `cacheEntryRemoved` promise resolves
         socket.close();
       },
@@ -38,4 +43,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetMessagesQuery } = api;
+export const { useGetAnglesQuery } = api;

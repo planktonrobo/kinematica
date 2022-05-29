@@ -29,7 +29,9 @@ app.get("*", (req, res) => {
 });
 
 io.on('connection', client => {
-  client.emit('init', {data: [0, 0, 0, 0, 0, 0]})
+  client.emit('init', {data: "Welcome"})
+  client.emit('angleState', {data: [0, 0, 0, 0, 0, 0]})
+  client.emit('robotState', {data: [0, 0, 0, 0, 0, 0]})
 })
 
 server.listen(PORT, () => {

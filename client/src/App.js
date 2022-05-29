@@ -1,9 +1,11 @@
 import "./App.css";
-import { Canvas} from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import Robot from "./components/Robot";
-
+import { useGetAnglesQuery } from "./api/socketClient";
 
 function App() {
+  const { data, isFetching, isLoading } = useGetAnglesQuery();
+
   return (
     <Canvas>
       <Robot />
