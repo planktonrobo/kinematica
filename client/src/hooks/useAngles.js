@@ -1,26 +1,20 @@
-import { useFrame } from "@react-three/fiber";
+import { useEffect, useContext, useCallback, useState } from "react";
+import { SocketContext } from "../context/socket";
+export default function useAngles(init) {
+  const socket = useContext(SocketContext);
+  let [angles, setAngles] = useState();
 
-export default function useAngles(ref, jointNumber) {
-    
-  let angles = [0, 0, 0, 0, 0, 0];
-  useFrame((state) => {
-    if (jointNumber === 0) {
-      ref.current.rotation.z = angles[jointNumber];
-    }
-    if (jointNumber === 1) {
-      ref.current.rotation.y = angles[jointNumber];
-    }
-    if (jointNumber === 2) {
-      ref.current.rotation.y = angles[jointNumber];
-    }
-    if (jointNumber === 3) {
-      ref.current.rotation.x = angles[jointNumber];
-    }
-    if (jointNumber === 4) {
-      ref.current.rotation.y = angles[jointNumber];
-    }
-    if (jointNumber === 5) {
-      ref.current.rotation.z = angles[jointNumber];
-    }
-  });
+  const handleAngles = useCallback((message) => {
+    setAngles(message.data);
+  }, []);
+
+  useEffect(() => {
+    socket.on("angleState", handleAngles);
+
+    return () => {
+      socket.off("angleState");
+    };
+  }, [socket]);
+
+  return angles;
 }

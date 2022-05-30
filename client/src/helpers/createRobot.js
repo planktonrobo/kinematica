@@ -21,15 +21,15 @@ export function createLinkGroup(x, y, z, w, h, d, min, max, jointNumber) {
 
   let jointGeo = {
     shape: [0.8, 0.8, 0.8 * 2, 32, 32, false, -min, 2 * Math.PI - max + min],
-    color: "green", // TO DO - ADD COLORS
+    color: "grey", // TO DO - ADD COLORS
   };
   let jointGeoMax = {
     shape: [0.8, 0.8, 0.8 * 2, 32, 32, false, -max, max],
-    color: "red",
+    color: "grey",
   };
   let jointGeoMin = {
     shape: [0.8, 0.8, 0.8 * 2, 32, 32, false, 0, -min],
-    color: "blue",
+    color: "grey",
   };
 
   switch (jointNumber) {

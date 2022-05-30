@@ -1,5 +1,5 @@
-import { useRef, useMemo, useEffect, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useRef, useMemo } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
 import { defaultRobotState, geo } from "../../iniitalRobot";
 import { createDataTree } from "../../helpers/createRobot";
 import { RecursiveLinkTree } from "./RecursiveLinkTree";
@@ -18,15 +18,13 @@ const Robot = () => {
 
   const ref = useRef();
 
-  const [messages, setMessages] = useState({});
+  const { viewport, camera } = useThree();
+  // const { width, height } = viewport.getCurrentViewport(camera, [0, 0, 0]);
 
 
-  useFrame((state) => {
-    ref.current.rotation.z = Math.sin(state.clock.elapsedTime);
-  });
 
   return (
-    <group ref={ref} position={[0, 0, -45]} rotation={[-1, 0, 0]}>
+    <group ref={ref} position={[0, -1.5, 0]} scale={0.1} rotation={[-1, 0, -.5]}>
       <RecursiveLinkTree listMeta={listMeta} />
     </group>
   );

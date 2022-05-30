@@ -3,15 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./redux/store";
-import { Provider } from "react-redux";
-
+import { SocketContext, socket } from "./context/socket";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <SocketContext.Provider value={socket}>
       <App />
-    </Provider>
+    </SocketContext.Provider>
   </React.StrictMode>
 );
 

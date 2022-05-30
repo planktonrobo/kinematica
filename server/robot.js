@@ -76,3 +76,9 @@ function createRobotState() {
     },
   };
 }
+
+function movementLoop(state) {
+  if (!state) {
+    return;
+  }
+}

@@ -1,15 +1,27 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Robot from "./components/Robot";
-import { useGetAnglesQuery } from "./api/socketClient";
-
+import { useContext } from "react";
+import { SocketContext } from "./context/socket";
+import { useContextBridge } from "@react-three/drei";
+import ControlPanel from "./components/GUI/ControlPanel";
+import { useEffect, useState } from "react";
 function App() {
-  const { data, isFetching, isLoading } = useGetAnglesQuery();
+  let [connected, setConnected] = useState(false)
+  let socket = useContext(SocketContext);
+  const ContextBridge = useContextBridge(SocketContext);
 
   return (
-    <Canvas>
-      <Robot />
-    </Canvas>
+    <div>
+      <Canvas camera={{}}>
+        <color attach="background" args={["#faced5"]} />
+        <ambientLight intensity={0.2} />
+        <ContextBridge>
+          <Robot />
+        </ContextBridge>
+      </Canvas>
+      <ControlPanel />
+    </div>
   );
 }
 
