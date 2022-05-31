@@ -20,11 +20,17 @@ const Robot = () => {
 
   const { viewport, camera } = useThree();
   // const { width, height } = viewport.getCurrentViewport(camera, [0, 0, 0]);
-
-
+  // useFrame(() => {
+  //   ref.current.scale = viewport / 5;
+  // });
 
   return (
-    <group ref={ref} position={[0, -1.5, 0]} scale={0.1} rotation={[-1, 0, -.5]}>
+    <group
+      ref={ref}
+      position={[0, -1, 0]}
+      scale={.1}
+      rotation={[-Math.PI / 2, 0, 0]}
+    >
       <RecursiveLinkTree listMeta={listMeta} />
     </group>
   );

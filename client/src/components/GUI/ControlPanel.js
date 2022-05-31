@@ -28,12 +28,6 @@ const ControlPanel = () => {
     IK.calculateAngles(points.x, points.y, points.z, points.rotateX, points.rotateY, points.roll, angles);
   }
 
-  useEffect(() => {
-    if (IKMode) {
-      IK.calculateAngles(points.x, points.y, points.z, points.rotateX, points.rotateY, points.roll, angles);
-    }
-  }, [IKMode]);
-
   return (
     <section className="w-full min-h-full p-8 bg-black text-white bg-opacity-90 control-panel grid md:grid-cols-2 gap-8">
       <div className="flex flex-col gap-2">
