@@ -3,13 +3,13 @@ import { defaultRobotState } from "../../iniitalRobot";
 import Slider from "@mui/material/Slider";
 import { SocketContext } from "../../context/socket";
 import useAngles from "../../hooks/useAngles";
-import Kinematic from "../../helpers/inverseKinematics";
+import InverseKinematic from "../../helpers/inverseKinematics";
 
 const ControlPanel = () => {
   let jointLimits = Object.values(defaultRobotState.jointLimits);
   let angles = useAngles();
   let IK;
-  IK = new Kinematic(
+  IK = new InverseKinematic(
     Object.values(defaultRobotState.geometry).map((v) => [v.x, v.y, v.z])
   );
 
