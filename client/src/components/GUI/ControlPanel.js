@@ -22,15 +22,15 @@ const ControlPanel = () => {
     socket.emit("angleState", angleState);
   }
 
-  let [points] = useState({ x: 10, y: 10, z: 10, pitch: Math.PI, yaw: 0, roll:0 });
+  let [points] = useState({ x: 10, y: 10, z: 10, rotateX: Math.PI, rotateY: 0, roll:0 });
 
   function setAnglesFromIK() {
-    IK.calculateAngles(points.x, points.y, points.z, points.pitch, points.yaw, points.roll, angles);
+    IK.calculateAngles(points.x, points.y, points.z, points.rotateX, points.rotateY, points.roll, angles);
   }
 
   useEffect(() => {
     if (IKMode) {
-      IK.calculateAngles(points.x, points.y, points.z, points.pitch, points.yaw, points.roll, angles);
+      IK.calculateAngles(points.x, points.y, points.z, points.rotateX, points.rotateY, points.roll, angles);
     }
   }, [IKMode]);
 
@@ -96,7 +96,7 @@ const ControlPanel = () => {
             );
           })}
           {IKMode &&
-          ["pitch", "yaw"].map((direction, i) => {
+          ["rotateX", "rotateY"].map((direction, i) => {
             return (
               <div className="w-full max-w-lg flex gap-1 items-center" key={i}>
                 <span className="text-sm w-16 font-semibold">{direction}</span>
