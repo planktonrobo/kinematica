@@ -1,5 +1,7 @@
 # kinematica
 
+DEMO: https://kinematic.herokuapp.com/
+
 
 This is a React 3 Fiber implementation of a 6-axis robot arm, controlled with a web socket. Adapted from https://github.com/glumb/robot-gui
 
